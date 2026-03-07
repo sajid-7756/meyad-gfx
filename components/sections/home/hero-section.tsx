@@ -7,9 +7,9 @@ type HeroSectionProps = {
 export function HeroSection({ stats }: HeroSectionProps) {
 
   return (
-    <section className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-20 pt-10 md:px-10 md:pt-16">
+    <section id="home" className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-20 pt-10 md:px-10 md:pt-16">
       <header className="js-hero flex items-center justify-between rounded-full border border-white/20 bg-white/5 px-4 py-2 backdrop-blur">
-        <p className="text-sm font-semibold tracking-[0.22em] text-white/80 cursor-pointer">MEYAD-GFX</p>
+        <a href="#home" className="text-sm font-semibold tracking-[0.22em] text-white/80 cursor-pointer">MEYAD-GFX</a>
         <a
           href="#contact"
           className="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-black transition hover:scale-105"

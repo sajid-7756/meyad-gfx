@@ -32,7 +32,7 @@ const socialLinks = [
   },
   {
     label: "Facebook",
-    href: "https://facebook.com",
+    href: "https://www.facebook.com/share/1CFcgqkWEu/",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@ const socialLinks = [
   },
   {
     label: "Behance",
-    href: "https://behance.net",
+    href: "https://www.behance.net/meyadgfx",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -64,21 +64,44 @@ const socialLinks = [
       </svg>
     ),
   },
+  {
+    label: "Discord",
+    href: "https://discord.gg/6eqtHzwVH",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M8.5 8.5c.8-.6 1.8-1 3.5-1s2.7.4 3.5 1" />
+        <path d="M7 16c1.2.8 2.8 1.3 5 1.3s3.8-.5 5-1.3" />
+        <path d="M5.5 7.5c3-2 10-2 13 0 1.5 3 1.5 6 0 9-3 2-10 2-13 0-1.5-3-1.5-6 0-9z" />
+        <circle cx="9" cy="12" r="1" />
+        <circle cx="15" cy="12" r="1" />
+      </svg>
+    ),
+  },
 ];
 
 export function FooterSection() {
   return (
     <footer className="relative border-t border-white/10 bg-[#090b0f]">
       {/* Subtle glow accent */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#53e3ff]/40 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#53e3ff]/40 to-transparent" />
 
       <SectionContainer className="pb-8 pt-12">
         <div className="grid gap-10 md:grid-cols-3 md:items-start">
           {/* Brand column */}
           <div className="space-y-4">
-            <p className="text-lg font-extrabold tracking-[0.22em] text-white">
+            <a href="#home" className="text-lg font-extrabold tracking-[0.22em] text-white">
               MEYAD-GFX
-            </p>
+            </a>
             <p className="max-w-xs text-sm leading-relaxed text-white/55">
               Production-grade visual design studio. Bold brands, social
               creatives, and motion graphics — crafted for impact.
@@ -122,12 +145,6 @@ export function FooterSection() {
                 </a>
               ))}
             </div>
-            <a
-              href="#contact"
-              className="inline-block rounded-full bg-[#ff7a18] px-5 py-2 text-sm font-semibold text-black transition hover:bg-[#ffa35e]"
-            >
-              Start a Project
-            </a>
           </div>
         </div>
 
