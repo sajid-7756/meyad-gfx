@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Neon Crest project preview">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0b132b"/><stop offset="100%" stop-color="#5bc0eb"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <circle cx="230" cy="200" r="140" fill="#6fffe9" fill-opacity="0.25"/>
+  <text x="70" y="720" fill="#e9f7ff" font-size="94" font-family="Arial, sans-serif" font-weight="700">Neon Crest</text>
+</svg>

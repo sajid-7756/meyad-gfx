@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Creator Boost project preview">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2b2d42"/><stop offset="100%" stop-color="#8d99ae"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <circle cx="980" cy="160" r="120" fill="#edf2f4" fill-opacity="0.2"/>
+  <text x="75" y="715" fill="#edf2f4" font-size="88" font-family="Arial, sans-serif" font-weight="700">Creator Boost</text>
+</svg>

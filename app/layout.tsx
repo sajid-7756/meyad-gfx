@@ -16,9 +16,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Miyad GFX",
+  title: "Meyad GFX",
   description:
-    "Miyad GFX creates bold brand visuals, social media creatives, and motion graphics.",
+    "Meyad GFX creates bold brand visuals, social media creatives, and motion graphics.",
 };
 
 export default function RootLayout({

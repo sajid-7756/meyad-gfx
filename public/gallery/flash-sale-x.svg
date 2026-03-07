@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Flash Sale X project preview">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#111827"/><stop offset="100%" stop-color="#ef4444"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <polygon points="180,80 1020,80 1080,720 120,720" fill="#ffffff" fill-opacity="0.08"/>
+  <text x="95" y="715" fill="#ffeceb" font-size="92" font-family="Arial, sans-serif" font-weight="700">Flash Sale X</text>
+</svg>
