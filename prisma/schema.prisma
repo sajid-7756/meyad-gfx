@@ -26,3 +26,9 @@ model QuickStats {
   value     String
   updatedAt DateTime @updatedAt
 }
+
+model Service {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+}
