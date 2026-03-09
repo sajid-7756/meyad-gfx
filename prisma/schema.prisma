@@ -13,3 +13,16 @@ model User {
   name  String?
 }
 
+model About {
+  id        Int      @id @default(autoincrement())
+  title     String?
+  content   String
+  updatedAt DateTime @updatedAt
+}
+
+model QuickStats {
+  id        Int      @id @default(autoincrement())
+  level     String
+  value     String
+  updatedAt DateTime @updatedAt
+}

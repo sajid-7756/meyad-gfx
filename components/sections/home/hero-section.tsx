@@ -1,15 +1,27 @@
-import type { StatItem } from "@/types/home";
+import prisma from "@/lib/prisma";
 
-type HeroSectionProps = {
-  stats: StatItem[];
-};
+type StatsType = {
+  id: number;
+  level: string;
+  value: string;
+  updatedAt: Date;
+}[];
 
-export function HeroSection({ stats }: HeroSectionProps) {
+export async function HeroSection() {
+  const stats: StatsType = await prisma.quickStats.findMany();
 
   return (
-    <section id="home" className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-20 pt-10 md:px-10 md:pt-16">
+    <section
+      id="home"
+      className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-20 pt-10 md:px-10 md:pt-16"
+    >
       <header className="js-hero flex items-center justify-between rounded-full border border-white/20 bg-white/5 px-4 py-2 backdrop-blur">
-        <a href="#home" className="text-sm font-semibold tracking-[0.22em] text-white/80 cursor-pointer">MEYAD-GFX</a>
+        <a
+          href="#home"
+          className="text-sm font-semibold tracking-[0.22em] text-white/80 cursor-pointer"
+        >
+          MEYAD-GFX
+        </a>
         <a
           href="#contact"
           className="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-black transition hover:scale-105"
@@ -54,11 +66,13 @@ export function HeroSection({ stats }: HeroSectionProps) {
           <div className="grid gap-3 sm:grid-cols-3 md:grid-cols-1">
             {stats.map((stat) => (
               <div
-                key={stat.label}
+                key={stat.level}
                 className="rounded-2xl border border-white/15 bg-black/30 px-4 py-3"
               >
-                <p className="text-2xl font-black text-[#53e3ff]">{stat.value}</p>
-                <p className="text-sm text-white/75">{stat.label}</p>
+                <p className="text-2xl font-black text-[#53e3ff]">
+                  {stat.value}
+                </p>
+                <p className="text-sm text-white/75">{stat.level}</p>
               </div>
             ))}
           </div>
