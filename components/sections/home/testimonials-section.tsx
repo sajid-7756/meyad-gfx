@@ -1,9 +1,14 @@
 import { SectionContainer } from "@/components/shared/section-container";
 import { Card, CardContent } from "@/components/ui/card";
-import type { TestimonialItem } from "@/types/home";
+interface Testimonial {
+  id: number;
+  quote: string;
+  author: string;
+  role: string;
+}
 
 type TestimonialsSectionProps = {
-  items: TestimonialItem[];
+  items: Testimonial[];
 };
 
 export function TestimonialsSection({ items }: TestimonialsSectionProps) {

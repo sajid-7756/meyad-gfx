@@ -8,14 +8,21 @@ import {
   TestimonialsSection,
   HomeClient,
 } from "@/components/sections/home";
-import {
-  galleryItems,
-  heroStats,
-  services,
-  testimonials,
-} from "@/data/home-content";
+import prisma from "@/lib/prisma";
 
-export default function Home() {
+export default async function Home() {
+  const [heroStats, services, galleryItems, testimonials, footerLinks] =
+    await Promise.all([
+      prisma.quickStats.findMany({ orderBy: { id: "asc" } }),
+      prisma.service.findMany({ orderBy: { id: "asc" } }),
+      prisma.project.findMany({ orderBy: { id: "asc" } }),
+      prisma.testimonial.findMany({ orderBy: { id: "asc" } }),
+      prisma.footerLink.findMany(),
+    ]);
+
+  const socialLinks = footerLinks.filter((l) => l.type === "social");
+  const navLinks = footerLinks.filter((l) => l.type === "nav");
+
   return (
     <HomeClient>
       <HeroSection stats={heroStats} />
@@ -24,7 +31,7 @@ export default function Home() {
       <GallerySection items={galleryItems} />
       <TestimonialsSection items={testimonials} />
       <ContactSection />
-      <FooterSection />
+      <FooterSection navLinks={navLinks} socialLinks={socialLinks} />
     </HomeClient>
   );
 }

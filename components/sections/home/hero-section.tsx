@@ -1,14 +1,15 @@
-import prisma from "@/lib/prisma";
-
-type StatsType = {
+type QuickStat = {
   id: number;
-  level: string;
+  label: string;
   value: string;
   updatedAt: Date;
-}[];
+};
 
-export async function HeroSection() {
-  const stats: StatsType = await prisma.quickStats.findMany();
+interface HeroSectionProps {
+  stats: QuickStat[];
+}
+
+export function HeroSection({ stats }: HeroSectionProps) {
 
   return (
     <section
@@ -66,13 +67,13 @@ export async function HeroSection() {
           <div className="grid gap-3 sm:grid-cols-3 md:grid-cols-1">
             {stats.map((stat) => (
               <div
-                key={stat.level}
+                key={stat.label}
                 className="rounded-2xl border border-white/15 bg-black/30 px-4 py-3"
               >
                 <p className="text-2xl font-black text-[#53e3ff]">
                   {stat.value}
                 </p>
-                <p className="text-sm text-white/75">{stat.level}</p>
+                <p className="text-sm text-white/75">{stat.label}</p>
               </div>
             ))}
           </div>

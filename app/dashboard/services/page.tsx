@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import { Plus, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -19,10 +16,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { PageHeader } from "@/components/dashboard/page-header";
-import { services } from "@/data/home-content";
+import prisma from "@/lib/prisma";
 
-export default function ServicesPage() {
-  const [items] = useState(services);
+export default async function ServicesPage() {
+  const items = await prisma.service.findMany({
+    orderBy: { id: "asc" },
+  });
 
   return (
     <div>

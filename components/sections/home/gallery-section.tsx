@@ -4,7 +4,12 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import type { GalleryItem } from "@/types/home";
+interface GalleryItem {
+  id: number;
+  name: string;
+  category: string;
+  image: string;
+}
 
 type GallerySectionProps = {
   items: GalleryItem[];

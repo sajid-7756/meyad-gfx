@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import {
   Plus,
   MoreHorizontal,
@@ -29,7 +26,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { PageHeader } from "@/components/dashboard/page-header";
-import { footerLinks } from "@/data/dashboard-data";
+import prisma from "@/lib/prisma";
 
 const iconMap: Record<string, React.ReactNode> = {
   instagram: <Instagram className="h-4 w-4" />,
@@ -37,8 +34,8 @@ const iconMap: Record<string, React.ReactNode> = {
   globe: <Globe className="h-4 w-4" />,
 };
 
-export default function FooterPage() {
-  const [links] = useState(footerLinks);
+export default async function FooterPage() {
+  const links = await prisma.footerLink.findMany();
   const socialLinks = links.filter((l) => l.type === "social");
   const navLinks = links.filter((l) => l.type === "nav");
 

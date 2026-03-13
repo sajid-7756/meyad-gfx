@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import { Plus, MoreHorizontal, Pencil, Trash2, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,10 +9,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { PageHeader } from "@/components/dashboard/page-header";
-import { testimonials } from "@/data/home-content";
+import prisma from "@/lib/prisma";
 
-export default function TestimonialsPage() {
-  const [items] = useState(testimonials);
+export default async function TestimonialsPage() {
+  const items = await prisma.testimonial.findMany({
+    orderBy: { id: "asc" },
+  });
 
   return (
     <div>

@@ -22,7 +22,7 @@ model About {
 
 model QuickStats {
   id        Int      @id @default(autoincrement())
-  level     String
+  label     String
   value     String
   updatedAt DateTime @updatedAt
 }
@@ -31,4 +31,36 @@ model Service {
   id          Int    @id @default(autoincrement())
   title       String
   description String
+}
+
+model Project {
+  id       Int    @id @default(autoincrement())
+  name     String
+  category String
+  image    String
+}
+
+model Testimonial {
+  id     Int    @id @default(autoincrement())
+  quote  String
+  author String
+  role   String
+}
+
+model ContactMessage {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  projectType String
+  message     String
+  date        DateTime @default(now())
+  read        Boolean  @default(false)
+}
+
+model FooterLink {
+  id    String  @id @default(cuid())
+  label String
+  href  String
+  type  String
+  icon  String?
 }

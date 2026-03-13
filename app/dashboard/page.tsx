@@ -17,10 +17,19 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { PageHeader } from "@/components/dashboard/page-header";
-import { dashboardStats, contactMessages } from "@/data/dashboard-data";
+import prisma from "@/lib/prisma";
 
-export default function DashboardPage() {
-  const recentMessages = contactMessages.slice(0, 4);
+export default async function DashboardPage() {
+  const [totalProjects, totalServices, totalTestimonials, unreadMessages, recentMessages] = await Promise.all([
+    prisma.project.count(),
+    prisma.service.count(),
+    prisma.testimonial.count(),
+    prisma.contactMessage.count({ where: { read: false } }),
+    prisma.contactMessage.findMany({
+      orderBy: { date: "desc" },
+      take: 4,
+    }),
+  ]);
 
   return (
     <div>
@@ -33,25 +42,25 @@ export default function DashboardPage() {
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
           label="Total Projects"
-          value={dashboardStats.totalProjects}
+          value={totalProjects}
           // eslint-disable-next-line jsx-a11y/alt-text
           icon={<Image className="h-5 w-5" />}
         />
         <StatCard
           label="Services"
-          value={dashboardStats.totalServices}
+          value={totalServices}
           icon={<Briefcase className="h-5 w-5" />}
         />
         <StatCard
           label="Testimonials"
-          value={dashboardStats.totalTestimonials}
+          value={totalTestimonials}
           icon={<MessageSquareQuote className="h-5 w-5" />}
         />
         <StatCard
           label="Unread Messages"
-          value={dashboardStats.unreadMessages}
+          value={unreadMessages}
           icon={<Mail className="h-5 w-5" />}
-          trend="2 new"
+          trend={unreadMessages > 0 ? `${unreadMessages} new` : undefined}
         />
       </div>
 
@@ -93,7 +102,7 @@ export default function DashboardPage() {
                     {msg.projectType}
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
-                    {msg.date}
+                    {new Date(msg.date).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">
                     <Badge variant={msg.read ? "outline" : "default"}>
