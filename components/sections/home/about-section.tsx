@@ -1,16 +1,16 @@
 import { SectionContainer } from "@/components/shared/section-container";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import prisma from "@/lib/prisma";
 
-type AboutData = {
-  title: string | null;
+interface AboutParagraph {
   id: number;
   content: string;
-  updatedAt: Date;
-}[];
+}
 
-export async function AboutSection() {
-  const paragraphs: AboutData = await prisma.about.findMany();
+interface AboutSectionProps {
+  paragraphs: AboutParagraph[];
+}
+
+export function AboutSection({ paragraphs }: AboutSectionProps) {
 
   return (
     <SectionContainer id="about" className="js-reveal">
