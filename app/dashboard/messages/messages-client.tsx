@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Eye, Trash2 } from "lucide-react";
+import { useTransition } from "react";
+import { Eye, Trash2, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { PageHeader } from "@/components/dashboard/page-header";
+import { markAsRead, deleteMessage } from "./actions";
 
 interface ContactMessage {
   id: string;
@@ -35,7 +36,23 @@ interface ContactMessage {
 }
 
 export default function MessagesClient({ initialMessages }: { initialMessages: ContactMessage[] }) {
-  const [messages] = useState(initialMessages);
+  const [isPending, startTransition] = useTransition();
+
+  const handleRead = (msg: ContactMessage) => {
+    if (!msg.read) {
+      startTransition(() => {
+        markAsRead(msg.id);
+      });
+    }
+  };
+
+  const handleDelete = (id: string) => {
+    if (confirm("Are you sure you want to delete this message?")) {
+      startTransition(() => {
+        deleteMessage(id);
+      });
+    }
+  };
 
   return (
     <div>
@@ -59,7 +76,7 @@ export default function MessagesClient({ initialMessages }: { initialMessages: C
               </TableRow>
             </TableHeader>
             <TableBody>
-              {messages.map((msg) => (
+              {initialMessages.map((msg) => (
                 <TableRow
                   key={msg.id}
                   className={!msg.read ? "bg-primary/5" : ""}
@@ -91,7 +108,7 @@ export default function MessagesClient({ initialMessages }: { initialMessages: C
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex items-center justify-end gap-1">
-                      <Dialog>
+                      <Dialog onOpenChange={(open) => { if (open) handleRead(msg); }}>
                         <DialogTrigger
                           render={
                             <Button
@@ -142,6 +159,8 @@ export default function MessagesClient({ initialMessages }: { initialMessages: C
                         variant="ghost"
                         size="sm"
                         className="h-8 w-8 p-0 text-destructive hover:text-destructive"
+                        disabled={isPending}
+                        onClick={() => handleDelete(msg.id)}
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
