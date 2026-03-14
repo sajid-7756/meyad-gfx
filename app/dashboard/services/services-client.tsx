@@ -152,19 +152,21 @@ export default function ServicesClient({ initialItems }: ServicesClientProps) {
                   </TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
-                      <DropdownMenuTrigger >
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 w-8 p-0"
-                          disabled={isDeleting === item.id}
-                        >
-                          {isDeleting === item.id ? (
-                            <Loader2 className="h-4 w-4 animate-spin" />
-                          ) : (
-                            <MoreHorizontal className="h-4 w-4" />
-                          )}
-                        </Button>
+                      <DropdownMenuTrigger
+                        render={
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 w-8 p-0"
+                            disabled={isDeleting === item.id}
+                          />
+                        }
+                      >
+                        {isDeleting === item.id ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          <MoreHorizontal className="h-4 w-4" />
+                        )}
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={() => handleOpenEdit(item)}>
@@ -196,7 +198,7 @@ export default function ServicesClient({ initialItems }: ServicesClientProps) {
       </Card>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-106.25">
+        <DialogContent className="sm:max-w-[425px]">
           <form onSubmit={handleSave}>
             <DialogHeader>
               <DialogTitle>{editingItem ? "Edit Service" : "Add Service"}</DialogTitle>
@@ -236,7 +238,7 @@ export default function ServicesClient({ initialItems }: ServicesClientProps) {
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isSaving}>
+              <Button type="submit" disabled={isSaving} className="bg-[#53e3ff] text-black hover:bg-[#53e3ff]/80">
                 {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {editingItem ? "Save Changes" : "Create Service"}
               </Button>

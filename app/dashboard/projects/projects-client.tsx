@@ -94,6 +94,7 @@ export function ProjectsClient({ items }: { items: Project[] }) {
       }
       
       setIsDialogOpen(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || "Something went wrong.");
     } finally {
@@ -107,6 +108,7 @@ export function ProjectsClient({ items }: { items: Project[] }) {
     try {
       await deleteProject(deletingProject.id);
       setIsDeleteDialogOpen(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || "Failed to delete project.");
     } finally {
@@ -201,7 +203,7 @@ export function ProjectsClient({ items }: { items: Project[] }) {
               {editingProject ? "Edit Project" : "Add Project"}
             </DialogTitle>
             <DialogDescription>
-              Provide the details of the project here. Click save when you're
+              Provide the details of the project here. Click save when you&apos;re
               done.
             </DialogDescription>
           </DialogHeader>

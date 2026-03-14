@@ -73,6 +73,7 @@ export function TestimonialsClient({ items }: { items: Testimonial[] }) {
       }
       
       setIsDialogOpen(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || "Something went wrong.");
     } finally {
@@ -86,6 +87,7 @@ export function TestimonialsClient({ items }: { items: Testimonial[] }) {
     try {
       await deleteTestimonial(deletingTestimonial.id);
       setIsDeleteDialogOpen(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || "Failed to delete testimonial.");
     } finally {
@@ -176,7 +178,7 @@ export function TestimonialsClient({ items }: { items: Testimonial[] }) {
               {editingTestimonial ? "Edit Testimonial" : "Add Testimonial"}
             </DialogTitle>
             <DialogDescription>
-              Provide the details of the testimonial here. Click save when you're
+              Provide the details of the testimonial here. Click save when you&apos;re
               done.
             </DialogDescription>
           </DialogHeader>

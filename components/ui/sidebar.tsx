@@ -187,7 +187,7 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+          className="w-(--sidebar-width) bg-[#0c0f14] p-0 text-[#f7f8fa] border-r border-white/10 [&>button]:hidden"
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -604,10 +604,13 @@ function SidebarMenuSkeleton({
 }: React.ComponentProps<"div"> & {
   showIcon?: boolean
 }) {
-  // Random width between 50 to 90%.
+  // Stable width via useId-based hash to avoid hydration mismatch (Math.random differs server vs client).
+  const id = React.useId();
   const [width] = React.useState(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`
-  })
+    // Deterministic from id, between 50–90%
+    const hash = id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    return `${(hash % 40) + 50}%`;
+  });
 
   return (
     <div

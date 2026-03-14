@@ -93,6 +93,7 @@ export default function FooterClient({ socialLinks }: { socialLinks: FooterLink[
       }
       
       setIsDialogOpen(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || "Something went wrong.");
     } finally {
@@ -106,6 +107,7 @@ export default function FooterClient({ socialLinks }: { socialLinks: FooterLink[
     try {
       await deleteSocialLink(deletingLink.id);
       setIsDeleteDialogOpen(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || "Failed to delete link.");
     } finally {

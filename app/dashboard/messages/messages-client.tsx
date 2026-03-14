@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
-import { Eye, Trash2, Loader2 } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -99,7 +99,9 @@ export default function MessagesClient({ initialMessages }: { initialMessages: C
                     </Badge>
                   </TableCell>
                   <TableCell className="hidden text-sm text-muted-foreground md:table-cell">
-                    {new Date(msg.date).toLocaleDateString()}
+                    <span suppressHydrationWarning>
+                      {new Date(msg.date).toLocaleDateString()}
+                    </span>
                   </TableCell>
                   <TableCell>
                     <Badge variant={msg.read ? "outline" : "default"}>
@@ -141,7 +143,9 @@ export default function MessagesClient({ initialMessages }: { initialMessages: C
                               <span className="text-muted-foreground">
                                 Date
                               </span>
-                              <span>{new Date(msg.date).toLocaleString()}</span>
+                              <span suppressHydrationWarning>
+                                {new Date(msg.date).toLocaleString()}
+                              </span>
                             </div>
                             <Separator />
                             <div>

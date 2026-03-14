@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -32,6 +33,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { getUnreadCount } from "@/app/dashboard/messages/actions";
 
 const navItems = [
   { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
@@ -47,7 +49,6 @@ const navItems = [
     label: "Messages",
     href: "/dashboard/messages",
     icon: Mail,
-    badge: "2",
   },
   { label: "Footer", href: "/dashboard/footer", icon: LinkIcon },
 ];
@@ -58,6 +59,11 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    getUnreadCount().then(setUnreadCount);
+  }, [pathname]);
 
   return (
     <TooltipProvider>
@@ -94,8 +100,10 @@ export default function DashboardLayout({
                         <item.icon className="h-4 w-4" />
                         <span>{item.label}</span>
                       </SidebarMenuButton>
-                      {item.badge && (
-                        <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>
+                      {item.label === "Messages" && unreadCount > 0 && (
+                        <SidebarMenuBadge className="bg-[#53e3ff] text-black font-bold">
+                          {unreadCount}
+                        </SidebarMenuBadge>
                       )}
                     </SidebarMenuItem>
                   ))}
