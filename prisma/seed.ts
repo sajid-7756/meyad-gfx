@@ -10,7 +10,7 @@ dotenv.config();
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
 });
-const adapter = new PrismaPg(pool);
+const adapter = new PrismaPg(pool as any);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, MoreHorizontal, Pencil, Trash2, Loader2, Save } from "lucide-react";
+import { Plus, MoreHorizontal, Pencil, Trash2, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -88,6 +88,7 @@ export default function ServicesClient({ initialItems }: ServicesClientProps) {
           alert("Error: " + result.error);
         }
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       alert("An unexpected error occurred.");
     } finally {
@@ -106,6 +107,7 @@ export default function ServicesClient({ initialItems }: ServicesClientProps) {
       } else {
         alert("Error: " + result.error);
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       alert("An unexpected error occurred.");
     } finally {
@@ -150,7 +152,7 @@ export default function ServicesClient({ initialItems }: ServicesClientProps) {
                   </TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
+                      <DropdownMenuTrigger >
                         <Button
                           variant="ghost"
                           size="sm"
@@ -194,7 +196,7 @@ export default function ServicesClient({ initialItems }: ServicesClientProps) {
       </Card>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-106.25">
           <form onSubmit={handleSave}>
             <DialogHeader>
               <DialogTitle>{editingItem ? "Edit Service" : "Add Service"}</DialogTitle>
