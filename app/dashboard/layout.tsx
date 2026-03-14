@@ -11,7 +11,9 @@ import {
   Mail,
   LinkIcon,
   PanelLeft,
+  LogOut,
 } from "lucide-react";
+import { signOut } from "next-auth/react";
 import {
   Sidebar,
   SidebarContent,
@@ -102,10 +104,15 @@ export default function DashboardLayout({
             </SidebarGroup>
           </SidebarContent>
 
-          <SidebarFooter className="p-4">
-            <div className="text-xs text-muted-foreground group-data-[collapsible=icon]:hidden">
-              Meyad GFX Admin
-            </div>
+          <SidebarFooter className="p-4 border-t border-white/5">
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton onClick={() => signOut()} tooltip="Sign Out" className="text-muted-foreground hover:text-foreground">
+                  <LogOut className="h-4 w-4" />
+                  <span>Sign Out</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
 

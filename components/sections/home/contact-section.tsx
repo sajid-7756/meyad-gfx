@@ -26,6 +26,7 @@ export function ContactSection() {
       await submitContactMessage(formData);
       setIsSuccess(true);
       (e.target as HTMLFormElement).reset();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || "Failed to send message. Please try again.");
     } finally {
